@@ -2,7 +2,7 @@ import json
 import os
 import glob
 
-# Dynamically find the latest results JSON file
+
 results_dir = os.path.join(os.path.dirname(__file__), '../results/performance_data')
 json_files = glob.glob(os.path.join(results_dir, 'performance_results_*.json'))
 if not json_files:
@@ -36,7 +36,7 @@ for data_type in results['data_types']:
         time_val = results['results'][algo][data_type]['100000']['statistics']['mean']
         print(f"  {algo}: {format_time(time_val)}")
 
-# Find best performer overall
+
 print("\n🏆 BEST PERFORMERS:")
 for data_type in results['data_types']:
     best_algo = None

@@ -1,11 +1,6 @@
-"""
-Main execution script for Sorting Algorithms Comparative Analysis
-"""
-
 import sys
 import os
 
-# Add src directory to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
 from src.data_generation.data_generator import DataGenerator

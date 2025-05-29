@@ -1,23 +1,19 @@
-"""
-Script to generate a detailed performance summary from analysis results
-"""
 
 import sys
 import os
 import json
 
-# Add project root to sys.path for correct imports
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.utils.config import Config
 from src.utils.helpers import format_time
 
 def load_latest_results():
-    """Load the most recent results file"""
     config = Config()
     results_dir = config.PERFORMANCE_DATA_DIR
     
-    # Find the most recent results file
+    
     json_files = [f for f in os.listdir(results_dir) if f.endswith('.json')]
     if not json_files:
         print("No results files found!")
@@ -30,7 +26,6 @@ def load_latest_results():
         return json.load(f)
 
 def print_performance_summary(results):
-    """Print a detailed performance summary"""
     print("🔍 DETAILED PERFORMANCE ANALYSIS SUMMARY")
     print("=" * 60)
     
@@ -47,7 +42,7 @@ def print_performance_summary(results):
     print(f"   • Analysis Date: {results['metadata']['timestamp']}")
     print()
     
-    # Performance by data type
+    
     for data_type in data_types:
         print(f"📈 {data_type.upper().replace('_', ' ')} DATA PERFORMANCE:")
         print("-" * 50)
@@ -55,13 +50,13 @@ def print_performance_summary(results):
         for size in data_sizes:
             print(f"\n  📏 Size {size//1000}K elements:")
             
-            # Collect times for this size and data type
+            
             perf_data = []
             for algo_name in algorithms:
                 stats = results['results'][algo_name][data_type][str(size)]['statistics']
                 perf_data.append((algo_name, stats['mean'], stats['std_dev']))
             
-            # Sort by performance (fastest first)
+            
             perf_data.sort(key=lambda x: x[1])
             
             for rank, (algo_name, mean_time, std_dev) in enumerate(perf_data, 1):
@@ -69,7 +64,7 @@ def print_performance_summary(results):
         
         print()
     
-    # Best algorithm for each scenario
+    
     print("🏆 CHAMPION ALGORITHMS BY SCENARIO:")
     print("-" * 50)
     
@@ -88,7 +83,7 @@ def print_performance_summary(results):
             
             improvement = ""
             if best_algo:
-                # Calculate improvement over second best
+                
                 times = []
                 for algo_name in algorithms:
                     if algo_name != best_algo:
@@ -106,7 +101,6 @@ def print_performance_summary(results):
     print("✅ Summary generation completed!")
 
 def generate_csv_export(results):
-    """Generate CSV export of all results"""
     import csv
     
     config = Config()
@@ -115,10 +109,10 @@ def generate_csv_export(results):
     with open(csv_path, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         
-        # Header
+        
         writer.writerow(['Algorithm', 'Data_Type', 'Data_Size', 'Mean_Time_Sec', 'Std_Dev_Sec', 'Min_Time_Sec', 'Max_Time_Sec'])
         
-        # Data rows
+        
         for algo_name in results['algorithms']:
             for data_type in results['data_types']:
                 for size in results['data_sizes']:
@@ -136,7 +130,6 @@ def generate_csv_export(results):
     print(f"📁 CSV export saved to: {csv_path}")
 
 def main():
-    """Main function"""
     print("Loading latest analysis results...")
     results = load_latest_results()
     

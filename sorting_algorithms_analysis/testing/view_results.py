@@ -1,12 +1,9 @@
-"""
-Simple script to view and summarize analysis results
-"""
 
 import json
 import os
 import glob
 
-# Dynamically find the latest results JSON file
+
 results_dir = os.path.join(os.path.dirname(__file__), '../results/performance_data')
 json_files = glob.glob(os.path.join(results_dir, 'performance_results_*.json'))
 if not json_files:
@@ -25,7 +22,7 @@ print(f"Data sizes: {results['data_sizes']}")
 print(f"Analysis date: {results['metadata']['timestamp']}")
 print()
 
-# Find best performers for each scenario
+
 print("🏆 BEST PERFORMERS:")
 print("-" * 30)
 
