@@ -10,7 +10,7 @@ To implement and analyze the performance of sorting algorithms (Quick Sort, Merg
 - **Data Types**: Random, Sorted, Reversed, Nearly Sorted
 - **Algorithms**: Quick Sort, Merge Sort, Heap Sort
 
-## Getting Started
+## How to
 1. python -m venv venv
 2. .\venv\Scripts\activate
 3. Install dependencies: `pip install -r requirements.txt`
@@ -22,12 +22,3 @@ To implement and analyze the performance of sorting algorithms (Quick Sort, Merg
 - Performance graphs
 - Written analysis report
 - Video presentation materials
-
-## Project Timeline
-1. Group formation and tool selection
-2. Algorithm implementation
-3. Data preparation
-4. Performance testing
-5. Analysis and visualization
-6. Report writing and presentation
-7. Final submission
