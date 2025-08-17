@@ -23,9 +23,6 @@ To implement and analyze the performance of sorting algorithms (Quick Sort, Merg
 - Written analysis report
 - Video presentation materials
 
-## Team Members
-- [Add team member names here]
-
 ## Project Timeline
 1. Group formation and tool selection
 2. Algorithm implementation
